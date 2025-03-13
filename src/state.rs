@@ -135,10 +135,10 @@ impl State {
     /// # Example
     ///
     /// ```
-    /// use weekend::security::State;
+    /// use thestack::security::State;
     /// let mut state = State::new();
     /// state.add("authenticated", "true");
-    /// state.add("members", String::from("weekend"));
+    /// state.add("members", String::from("thestack"));
     /// state.add("name", "west");
     /// assert_eq!(state.len(), 3)
     /// ```
@@ -163,8 +163,8 @@ impl State {
     /// # Examples
     ///
     /// ```
-    /// use weekend::security::State;
-    /// use weekend::security::state::Entry;
+    /// use thestack::security::State;
+    /// use thestack::security::state::Entry;
     ///
     /// let mut state = State::new();
     /// state.add("role", "user");
@@ -191,8 +191,8 @@ impl State {
     /// # Examples
     ///
     /// ```
-    /// use weekend::security::State;
-    /// use weekend::security::state::Entry;
+    /// use thestack::security::State;
+    /// use thestack::security::state::Entry;
     ///
     /// let mut state = State::new();
     /// state.add("role", "user");
@@ -220,7 +220,7 @@ impl State {
     /// # Examples
     ///
     /// ```
-    /// use weekend::security::State;
+    /// use thestack::security::State;
     ///
     /// let mut state = State::new();
     /// state.add("authenticated", "true");
@@ -237,7 +237,7 @@ impl State {
     /// # Example
     ///
     /// ```
-    /// use weekend::security::State;
+    /// use thestack::security::State;
     /// let mut state = State::new();
     /// assert!(state.is_empty());
     /// state.add("authenticated", "true");
@@ -255,7 +255,7 @@ impl State {
     /// # Example
     ///
     /// ```
-    /// use weekend::security::State;
+    /// use thestack::security::State;
     /// let mut state = State::new();
     /// assert_eq!(state.len(), 0);
     /// state.add("authenticated", "true");
@@ -273,7 +273,7 @@ impl State {
     /// # Example
     ///
     /// ```
-    /// # use weekend::security::State;
+    /// # use thestack::security::State;
     /// let mut state = State::new();
     /// state.add("authenticated", "true");
     /// state.clear();
@@ -292,8 +292,8 @@ impl State {
 /// # Examples
 ///
 /// ```
-/// use weekend::security::State;
-/// use weekend::security::state::Entry;
+/// use thestack::security::State;
+/// use thestack::security::state::Entry;
 ///
 /// let mut state = State::new();
 /// state.add("key", "value");
@@ -319,8 +319,8 @@ impl Index<&'static str> for State {
 /// # Examples
 ///
 /// ```
-/// use weekend::security::State;
-/// use weekend::security::state::Entry;
+/// use thestack::security::State;
+/// use thestack::security::state::Entry;
 ///
 /// let mut state = State::new();
 /// state.add("key", "value");

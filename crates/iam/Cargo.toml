@@ -1,5 +1,5 @@
 [package]
-name = "iam"
+name = "thestack-iam"
 # TODO -> Add documentation url later
 # documentation = ""
 description = "Identity System that support user and role management and authorization"
@@ -7,7 +7,6 @@ version.workspace = true
 license.workspace = true
 edition.workspace = true
 authors.workspace = true
-repository.workspace = true
 
 [dependencies]
 

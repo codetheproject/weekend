@@ -3,7 +3,6 @@ attr_fn_like_width = 120
 chain_width = 40
 fn_call_width = 120
 fn_params_layout = "Compressed"
-# match_arm_leading_pipes = "Always"
 max_width = 120
 merge_derives = true
 remove_nested_parens = true

@@ -1,7 +1,9 @@
 [package]
-name = "actix"
-version = "0.1.0"
-edition = "2021"
+name = "thestack-actix"
+version.workspace = true
+license.workspace = true
+edition.workspace = true
+authors.workspace = true
 
 [dependencies]
 

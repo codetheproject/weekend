@@ -1,0 +1,20 @@
+[package]
+name = "thestack-validator"
+version.workspace = true
+license.workspace = true
+edition.workspace = true
+authors.workspace = true
+
+[dependencies]
+thestack = { version = "0.1.0", path = "../.." }
+serde = { workspace = true, features = ["derive"] }
+serde_valid = { version = "1.0.5", optional = true }
+validator = { version = "0.20.0", features = ["derive"], optional = true }
+
+[features]
+default = ["validator", "serde_valid"]
+validator = ["dep:validator"]
+serde_valid = ["dep:serde_valid"]
+
+[lints]
+workspace = true

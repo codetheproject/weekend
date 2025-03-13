@@ -10,24 +10,9 @@ where
     // context: Arc<Box<dyn >>
 }
 
-async fn use_context<S, P>(ctx: Context<S, P>, state: S)
-where
-    P: Provider<S>,
-{
-    let signin = ctx
-        .provider
-        .get_sign_in(String::new())
-        .await;
-
-    // let _ = signin
-    //     .sign_in(&state, &String::new())
-    //     .await;
-}
-
 pub mod handler {
-    use async_trait::async_trait;
+    use std::future::Future;
 
-    #[async_trait]
     pub trait Handler<State> {
         type Error;
 
@@ -38,7 +23,7 @@ pub mod handler {
         /// Authenticate the current request
         ///
         /// This method is called to authenticate the current request
-        async fn authenticate(&self) -> Result<(), Self::Error>;
+        fn authenticate(&self) -> impl Future<Output = Result<(), Self::Error>> + Send;
 
         /// Forbid the current request
         ///
@@ -46,7 +31,7 @@ pub mod handler {
         ///
         /// # Arguments
         /// `state` - The current state of the request `S`
-        async fn forbid(&self, state: &State) -> Result<(), Self::Error>;
+        fn forbid(&self, state: &State) -> impl Future<Output = Result<(), Self::Error>> + Send;
 
         /// Challenge the current request
         ///
@@ -54,19 +39,18 @@ pub mod handler {
         ///
         /// # Arguments
         /// `state` - The current state of the request `Self::State`
-        async fn challenge(&self, state: &State) -> Result<(), Self::Error>;
+        fn challenge(&self, state: &State) -> impl Future<Output = Result<(), Self::Error>> + Send;
     }
 }
 
 pub mod sign_out {
     use super::handler::Handler;
-    use async_trait::async_trait;
+    use std::future::Future;
 
-    #[async_trait]
     pub trait SignOutHandler<State>: Handler<State> {
         type Claim;
 
-        async fn sign_out(&self, state: &State, claim: &Self::Claim) -> Result<(), Self::Error>;
+        fn sign_out(&self, state: &State, claim: &Self::Claim) -> impl Future<Output = Result<(), Self::Error>> + Send;
     }
 
     pub struct SignOutContext<State, Handler: SignOutHandler<State>> {
@@ -78,11 +62,10 @@ pub mod sign_out {
 
 pub mod sign_in {
     use super::sign_out::SignOutHandler;
-    use async_trait::async_trait;
+    use std::future::Future;
 
-    #[async_trait]
     pub trait SignInHandler<State>: SignOutHandler<State> {
-        async fn sign_in(&self, state: &State, claim: &Self::Claim) -> Result<(), Self::Error>;
+        fn sign_in(&self, state: &State, claim: &Self::Claim) -> impl Future<Output = Result<(), Self::Error>> + Send;
     }
 
     pub struct SignInContext<State, Handler: SignOutHandler<State>> {
